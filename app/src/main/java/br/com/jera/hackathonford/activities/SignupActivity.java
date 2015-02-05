@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.jera.hackathonford.R;
@@ -24,6 +25,7 @@ public class SignupActivity extends BaseActivity {
 
     @InjectView(R.id.nameEditText)
     EditText nameEditText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
