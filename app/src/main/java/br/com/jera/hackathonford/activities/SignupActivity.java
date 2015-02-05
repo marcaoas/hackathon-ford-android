@@ -37,6 +37,7 @@ public class SignupActivity extends BaseActivity {
 
         if(User.getCount() > 0){
             Intent mainActivityIntent = new Intent(this,MainActivity.class);
+            finish();
             startActivity(mainActivityIntent);
         }
     }

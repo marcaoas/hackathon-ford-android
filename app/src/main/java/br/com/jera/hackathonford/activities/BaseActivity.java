@@ -19,6 +19,8 @@ public class BaseActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
         //TODO methods for all activities should be here
+
+
     }
 
 
