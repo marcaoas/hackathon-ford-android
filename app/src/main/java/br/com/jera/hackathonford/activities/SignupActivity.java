@@ -21,19 +21,16 @@ import butterknife.OnClick;
  */
 public class SignupActivity extends BaseActivity {
 
-    final String PREFS_NAME = "MyPrefsFile";
 
     @InjectView(R.id.nameEditText)
     EditText nameEditText;
-    @InjectView(R.id.startButton)
-    Button startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro_activity);
         ButterKnife.inject(this);
-        Log.d("HACKATON", User.getCount() + "");
+//        Log.d("HACKATON", User.getCount() + "");
 
         if(User.getCount() > 0){
             Intent mainActivityIntent = new Intent(this,MainActivity.class);
@@ -48,8 +45,11 @@ public class SignupActivity extends BaseActivity {
 
         String name =  nameEditText.getText().toString();
         User newUser = new User(name);
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+        Intent mainActivityIntent = new Intent(this,MainActivity.class);
+        finish();
+        startActivity(mainActivityIntent);
         newUser.save();
+        
     }
 
 
