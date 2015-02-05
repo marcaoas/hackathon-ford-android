@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/appIconImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:src="@mipmap/ic_launcher"
+        />
+    
+    
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_below="@+id/appIconImage"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hint="@string/name"/>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_below="@+id/nameEditText"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/startButton"
+        android:onClick="startButtonClicked"/>
+
+</RelativeLayout>

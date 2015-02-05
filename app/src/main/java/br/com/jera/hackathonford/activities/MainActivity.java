@@ -3,6 +3,8 @@ package br.com.jera.hackathonford.activities;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import br.com.jera.hackathonford.R;
 
@@ -37,4 +39,6 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
