@@ -28,5 +28,7 @@ public class User extends Model {
         return new Select().from(User.class).executeSingle();
     }
 
-
+    public static int getCount(){
+        return new Select().from(User.class).execute().size();
+    }
 }

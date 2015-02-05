@@ -3,6 +3,7 @@ package br.com.jera.hackathonford.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ import butterknife.OnClick;
  */
 public class SignupActivity extends BaseActivity {
 
+    final String PREFS_NAME = "MyPrefsFile";
+
     @InjectView(R.id.nameEditText)
     EditText nameEditText;
     @InjectView(R.id.startButton)
@@ -30,14 +33,17 @@ public class SignupActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro_activity);
         ButterKnife.inject(this);
+        Log.d("HACKATON", User.getCount() + "");
+
+        if(User.getCount() > 0){
+            Intent mainActivityIntent = new Intent(this,MainActivity.class);
+            startActivity(mainActivityIntent);
+        }
     }
 
 
     @OnClick(R.id.startButton)
     public void save(){
-
-        Intent mainActivityIntent = new Intent(this,MainActivity.class);
-        startActivity(mainActivityIntent);
 
         String name =  nameEditText.getText().toString();
         User newUser = new User(name);
