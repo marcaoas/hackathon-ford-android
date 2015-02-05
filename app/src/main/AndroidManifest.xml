@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".activities.LockScreenActivity"
             android:label="@string/lockscreen_title"/>
+        <activity android:name=".activities.MainActivity"
+            android:label="@string/dashboard_title"/>
     </application>
 
 </manifest>

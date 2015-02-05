@@ -22,7 +22,5 @@ public class BaseActivity extends ActionBarActivity {
     }
 
 
-    public void startButtonClicked(View v){
-        Toast.makeText(this, "Ação de cadastro", Toast.LENGTH_SHORT).show();
-    }
+
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.jera.hackathonford.R;
+import br.com.jera.hackathonford.model.User;
 
 
 public class MainActivity extends BaseActivity {
@@ -15,6 +16,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        User test = User.getRandom();
+        Toast.makeText(this, test.userName, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -39,6 +43,8 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

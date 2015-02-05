@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import com.activeandroid.ActiveAndroid;
 import com.ford.syncV4.exception.SyncException;
 import com.ford.syncV4.proxy.SyncProxyALM;
 
@@ -18,6 +19,8 @@ import br.com.jera.hackathonford.utils.Logger;
  * Created by marco on 05/02/15.
  */
 public class HackathonApplication extends Application{
+
+    private static Context context;
     public static final String TAG = "Hello AppLink"; // Global TAG used in logging
     private static HackathonApplication instance;
     private static BaseActivity currentUIActivity;
@@ -46,6 +49,13 @@ public class HackathonApplication extends Application{
     public void onCreate() {
         super.onCreate();
         HackathonApplication.setInstance(this);
+
+        ActiveAndroid.initialize(this);
+        context = this;
+    }
+
+    public static Context getContext(){
+        return context;
     }
 
     @Override

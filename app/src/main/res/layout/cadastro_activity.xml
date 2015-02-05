@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/startButton"
-        android:onClick="startButtonClicked"/>
+        android:text="@string/startButton"/>
 
 </RelativeLayout>
