@@ -28,7 +28,7 @@ import br.com.jera.hackathonford.model.User;
 import butterknife.InjectView;
 
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
 
     MapFragment mMapFragment;
     GoogleApiClient mGoogleApiClient;
@@ -47,10 +47,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         User test = User.getRandom();
         Toast.makeText(this, test.userName, Toast.LENGTH_SHORT).show();
 
+        buildGoogleApiClient();
         createLocationRequest();
         mMapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
     }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -90,4 +100,25 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
+    @Override
+    public void onConnected(Bundle bundle) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+            latitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+            longitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+            Log.d("AAAA", "FOI");
+        }
+        Log.d("AAAA", "NEM FOI");
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
 }
