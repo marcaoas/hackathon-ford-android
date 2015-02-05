@@ -49,7 +49,7 @@ public class SignupActivity extends BaseActivity {
         finish();
         startActivity(mainActivityIntent);
         newUser.save();
-        
+
     }
 
 
