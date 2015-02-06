@@ -61,6 +61,7 @@ import com.ford.syncV4.proxy.rpc.UnsubscribeButtonResponse;
 import com.ford.syncV4.proxy.rpc.UnsubscribeVehicleDataResponse;
 import com.ford.syncV4.proxy.rpc.enums.ButtonName;
 import com.ford.syncV4.proxy.rpc.enums.LockScreenStatus;
+import com.ford.syncV4.proxy.rpc.enums.Result;
 import com.ford.syncV4.proxy.rpc.enums.SyncDisconnectedReason;
 import com.ford.syncV4.proxy.rpc.enums.TextAlignment;
 import com.ford.syncV4.util.DebugTool;
@@ -292,16 +293,12 @@ public class AppLinkService extends Service implements IProxyListenerALM {
                     Logger.d("Error while subscribe to vehicle data");
                 }
                 autoIncCorrId = CommandManager.addVoiceCommands(proxy, autoIncCorrId);
-                try {
-                    proxy.show("Seja bem-vindo ao ", "HEERE", TextAlignment.CENTERED, autoIncCorrId++);
-                } catch (SyncException e) {
-                    DebugTool.logError("Failed to send Show", e);
-                }
-                try {
-                    proxy.addSubMenu(15, "SOS", 0, autoIncCorrId++);
-                } catch (SyncException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    proxy.show("Seja bem-vindo ao ", "HEERE", TextAlignment.CENTERED, autoIncCorrId++);
+//                } catch (SyncException e) {
+//                    DebugTool.logError("Failed to send Show", e);
+//                }
+                autoIncCorrId = ScreenConfig.initialScreen(autoIncCorrId, proxy);
                 break;
             case HMI_LIMITED:
                 Logger.i("HMI_LIMITED");
@@ -406,6 +403,8 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onShowResponse(ShowResponse response) {
         // TODO Auto-generated method stub
+
+        Logger.d("onShowResponse" + response.toString());
     }
 
     @Override
@@ -416,11 +415,18 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnButtonEvent(OnButtonEvent notification) {
         // TODO Auto-generated method stub
+
+        Logger.d("onOnButtonEvent" + notification.toString());
     }
 
     @Override
     public void onOnButtonPress(OnButtonPress notification) {
         // TODO Auto-generated method stub
+        switch (notification.getButtonName()) {
+            case CUSTOM_BUTTON:
+                ScreenConfig.onCustomButtomPressed(this, notification);
+                break;
+        }
     }
 
     @Override
@@ -452,23 +458,34 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onSubscribeVehicleDataResponse(SubscribeVehicleDataResponse response) {
         // TODO Auto-generated method stub
-        Logger.d("Subscribed to vehicle data");
-
+        if (response.getResultCode() == Result.DISALLOWED)  {
+            Logger.i("onGetVehicleDataResponse read disallowed");
+            return;
+        }
+        else if (response.getResultCode() == Result.USER_DISALLOWED)  {
+            Logger.i("VehicleData read user disallowed");
+            return;
+        }
     }
 
     @Override
     public void onUnsubscribeVehicleDataResponse(
             UnsubscribeVehicleDataResponse response) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onGetVehicleDataResponse(GetVehicleDataResponse response) {
         // TODO Auto-generated method stub
+        if (response.getResultCode() == Result.DISALLOWED)  {
+            Logger.i("onGetVehicleDataResponse read disallowed");
+            return;
+        }
+        else if (response.getResultCode() == Result.USER_DISALLOWED)  {
+            Logger.i("VehicleData read user disallowed");
+            return;
+        }
         VehicleDataManager.handleVehicleData(this, response);
-        Logger.i("onGetVehicleDataResponse");
-
     }
 
     @Override
@@ -486,8 +503,6 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnVehicleData(OnVehicleData notification) {
         // TODO Auto-generated method stub
-        GPSData location = notification.getGps();
-        Logger.d(location.toString());
     }
 
     @Override

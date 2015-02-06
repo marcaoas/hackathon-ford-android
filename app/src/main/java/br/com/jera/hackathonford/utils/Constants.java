@@ -40,4 +40,8 @@ public class Constants {
     public final class VoiceCommands {
         public static final int SOS_COMMAND_ID = 60;
     }
+
+    public final class SoftButtons {
+        public static final int SOS_BUTTON = 101;
+    }
 }
