@@ -31,10 +31,11 @@
         android:paddingBottom="16dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_check"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,10 +50,11 @@
         android:paddingBottom="16dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_check"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,10 +68,11 @@
         android:paddingBottom="16dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_check"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
