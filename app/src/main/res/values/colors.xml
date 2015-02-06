@@ -5,5 +5,6 @@
     <color name="accent">#0FCC47</color>
     <color name="orange">#F5A623</color>
     <color name="white">#FFFFFF</color>
+    <color name="gray">#333333</color>
     <color name="whiteHint">#BFFFFFFF</color>
 </resources>

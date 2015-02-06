@@ -8,4 +8,5 @@
     <string name="lockscreen_title">Tela de bloqueio</string>
     <string name="lockscreen_reset_button">Reiniciar conexão</string>
     <string name="dashboard_title">Dashboard</string>
+    <string name="title_activity_purchase">PurchaseActivity</string>
 </resources>
