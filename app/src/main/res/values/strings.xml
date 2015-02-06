@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Heere</string>
+    <string name="app_name">Heere.</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -8,11 +8,20 @@
     <string name="lockscreen_title">Tela de bloqueio</string>
     <string name="lockscreen_reset_button">Reiniciar conexão</string>
     <string name="dashboard_title">Dashboard</string>
-    <string name="title_activity_purchase">PurchaseActivity</string>
 
     <string name="sos_command">SOS</string>
     <string name="socorro_command">Socorro</string>
     <string name="emergencia_command">Emergência</string>
     <string name="panico_command">Panico</string>
     <string name="botao_panico_command">Botão de panico</string>
+    <string name="title_activity_purchase">Heere Premium</string>
+    
+    <array name="planets_array">
+        <item>Inicio</item>
+        <item>Inicio</item>
+        <item>Inicio</item>
+        <item>Inicio</item>
+    </array>
+    <string name="title_activity_group">Grupo</string>
+    <string name="title_activity_configurations">Configurações</string>
 </resources>

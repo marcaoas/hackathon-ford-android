@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -31,6 +34,9 @@ import br.com.jera.hackathonford.model.User;
 import br.com.jera.hackathonford.utils.Constants;
 import br.com.jera.hackathonford.utils.Logger;
 import butterknife.ButterKnife;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class MainActivity extends AppLinkActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
@@ -39,11 +45,27 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
 
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
+    private String[] mPlanetTitles;
+    private ListView mDrawerList;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+        mPlanetTitles = getResources().getStringArray(R.array.planets_array);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, mPlanetTitles));
+//        // Set the list's click listener
+//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
 
         HackathonApplication app = HackathonApplication.getInstance();
         if (app != null) {
@@ -151,5 +173,12 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
+    }
+
+    @OnClick(R.id.upgrade)
+    public void upgradeApp(){
+
+        Intent intent = new Intent(this, PurchaseActivity.class);
+        startActivity(intent);
     }
 }

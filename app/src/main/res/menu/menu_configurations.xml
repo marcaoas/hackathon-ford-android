@@ -1,7 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="br.com.jera.hackathonford.activities.PurchaseActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    tools:context="br.com.jera.hackathonford.activities.ConfigurationsActivity">
+    <item android:id="@+id/confirm" android:title="Confirmar"
+        android:icon="@mipmap/ic_check"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

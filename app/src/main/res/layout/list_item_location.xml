@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/circleInitialName"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:background="@mipmap/ic_location"
+        android:layout_margin="20dp"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:id="@+id/completeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rua Teldo Kasper, 109"
+        android:paddingTop="24dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/circleInitialName"/>
+    <TextView
+        android:id="@+id/administrator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="há 10 minutos"
+        android:layout_below="@+id/completeName"
+        android:layout_alignLeft="@+id/completeName"/>
+</RelativeLayout>

@@ -3,16 +3,17 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
+
     tools:context="br.com.jera.hackathonford.activities.PurchaseActivity">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:src="@mipmap/ic_logo"
-        android:paddingBottom="24dp"
-        android:paddingTop="24dp"/>
+        android:layout_height="60dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_logo_small"
+        android:paddingBottom="16dp"
+        android:layout_gravity="center"/>
 
     <TextView
         android:text="Somente com o Heere Premium você tem vantagens exclusivas para aproveitar ao máximo a segurança que o app pode oferecer.\n\nPor apenas R$ 3,99 ao mês você tem à sua disposição os seguintes recursos:"
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/gray"
         android:textSize="14sp"
-        android:paddingBottom="24dp"/>
+        android:paddingBottom="16dp"/>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,10 +30,11 @@
         android:paddingBottom="16dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_check"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,10 +49,11 @@
         android:paddingBottom="16dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_check"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,13 +64,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="16dp">
+        android:paddingBottom="8dp">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_check_feature"
+            android:scaleType="fitCenter"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_check"
-            android:padding="8dp"/>
+            android:padding="4dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
