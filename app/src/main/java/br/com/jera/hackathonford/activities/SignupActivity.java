@@ -1,10 +1,12 @@
 package br.com.jera.hackathonford.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,11 +36,16 @@ public class SignupActivity extends BaseActivity {
         ButterKnife.inject(this);
 //        Log.d("HACKATON", User.getCount() + "");
 
+
+
         if(User.getCount() > 0){
             Intent mainActivityIntent = new Intent(this,MainActivity.class);
             finish();
             startActivity(mainActivityIntent);
         }
+        nameEditText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(nameEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
 
