@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_alignLeft="@+id/nameEditText"
+        android:textColor="@color/whiteHint"
         android:text="Preencha com seu nome"/>
     <EditText
         android:id="@+id/nameEditText"
@@ -28,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/whiteHint"
         android:hint="@string/name"/>
 
     <Button

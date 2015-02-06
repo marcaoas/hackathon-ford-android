@@ -1,23 +1,20 @@
 package br.com.jera.hackathonford.activities;
 
-import android.app.FragmentTransaction;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.*;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
@@ -25,18 +22,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.model.User;
-import butterknife.InjectView;
 
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
+public class MainActivity extends ActionBarActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
 
     MapFragment mMapFragment;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
-    @InjectView(R.id.latitudeText)
-    TextView latitudeText;
-    @InjectView(R.id.longitudeText)
-    TextView longitudeText;
+
 
 
     @Override
@@ -87,8 +80,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         googleMap.addMarker(new MarkerOptions()
-        .position(new LatLng(0, 0))
-        .title("TESTE"));
+                .position(new LatLng(0, 0))
+                .title("TESTE"));
         Log.d("HACKATON", "FOI");
     }
 
@@ -105,8 +98,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            latitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            longitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+
             Log.d("AAAA", "FOI");
         }
         Log.d("AAAA", "NEM FOI");
