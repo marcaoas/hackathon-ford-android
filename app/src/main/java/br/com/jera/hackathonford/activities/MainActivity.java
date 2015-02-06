@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.model.User;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
@@ -48,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.inject(this);
         mPlanetTitles = getResources().getStringArray(R.array.planets_array);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         // Set the adapter for the list view
@@ -137,6 +138,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     @OnClick(R.id.upgrade)
     public void upgradeApp(){
+
         Intent intent = new Intent(this, PurchaseActivity.class);
         startActivity(intent);
     }
