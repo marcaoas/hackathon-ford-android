@@ -16,4 +16,6 @@
         <item>Inicio</item>
         <item>Inicio</item>
     </array>
+    <string name="title_activity_group">GroupActivity</string>
+    <string name="title_activity_configurations">ConfigurationsActivity</string>
 </resources>
