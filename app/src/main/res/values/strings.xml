@@ -9,4 +9,11 @@
     <string name="lockscreen_reset_button">Reiniciar conexão</string>
     <string name="dashboard_title">Dashboard</string>
     <string name="title_activity_purchase">PurchaseActivity</string>
+    
+    <array name="planets_array">
+        <item>Inicio</item>
+        <item>Inicio</item>
+        <item>Inicio</item>
+        <item>Inicio</item>
+    </array>
 </resources>
