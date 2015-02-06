@@ -1,7 +1,6 @@
 package br.com.jera.hackathonford.activities;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.Location;
@@ -29,11 +28,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.applink.AppLinkActivity;
+import br.com.jera.hackathonford.model.DrivingEvent;
+import br.com.jera.hackathonford.model.DrivingEventType;
 import br.com.jera.hackathonford.model.User;
 import br.com.jera.hackathonford.receiver.DrivingEventReceiver;
 import br.com.jera.hackathonford.receiver.PanicoReceiver;
 import br.com.jera.hackathonford.utils.Constants;
-import br.com.jera.hackathonford.utils.Logger;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -47,6 +47,9 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
 
     @InjectView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
+    @InjectView(R.id.drivingEvents)
+    ListView drivingEvents;
 
     private String[] mPlanetTitles;
     private ListView mDrawerList;
@@ -66,6 +69,14 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
 //        // Set the list's click listener
 //        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+        //criar driving events fake
+        DrivingEvent drivingEvent = new DrivingEvent();
+        drivingEvent.eventType = String.valueOf(DrivingEventType.ACCIDENT);
+        drivingEvent.lat = -15.00;
+        drivingEvent.lng = -45.00;
+        drivingEvent.save();
+
+        drivingEvents.set
 
         HackathonApplication app = HackathonApplication.getInstance();
         if (app != null) {
