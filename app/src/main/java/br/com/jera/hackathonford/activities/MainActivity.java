@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,9 +30,9 @@ import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.applink.AppLinkActivity;
 import br.com.jera.hackathonford.model.User;
+import br.com.jera.hackathonford.receiver.PanicoReceiver;
 import br.com.jera.hackathonford.utils.Constants;
 import br.com.jera.hackathonford.utils.Logger;
-import butterknife.ButterKnife;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -130,7 +129,9 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.accident) {
+            Intent intent = new Intent(this, PanicoReceiver.class);
+            sendBroadcast(intent);
             return true;
         }
 
