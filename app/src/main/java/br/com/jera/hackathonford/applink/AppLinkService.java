@@ -286,12 +286,12 @@ public class AppLinkService extends Service implements IProxyListenerALM {
         switch (notification.getHmiLevel()) {
             case HMI_FULL:
                 Logger.i("HMI_FULL");
-                try {
-                    proxy.getvehicledata(true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, autoIncCorrId++);
-                } catch (Exception e){
-                    e.printStackTrace();
-                    Logger.d("Error while subscribe to vehicle data");
-                }
+//                try {
+//                    proxy.getvehicledata(true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, autoIncCorrId++);
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                    Logger.d("Error while subscribe to vehicle data");
+//                }
                 autoIncCorrId = CommandManager.addVoiceCommands(proxy, autoIncCorrId);
 //                try {
 //                    proxy.show("Seja bem-vindo ao ", "HEERE", TextAlignment.CENTERED, autoIncCorrId++);
@@ -485,7 +485,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
             Logger.i("VehicleData read user disallowed");
             return;
         }
-        VehicleDataManager.handleVehicleData(this, response);
+        //VehicleDataManager.handleVehicleData(this, response);
     }
 
     @Override
@@ -503,6 +503,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnVehicleData(OnVehicleData notification) {
         // TODO Auto-generated method stub
+        VehicleDataManager.handleVehicleData(this, notification);
     }
 
     @Override

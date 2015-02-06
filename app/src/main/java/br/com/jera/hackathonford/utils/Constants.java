@@ -31,6 +31,8 @@ public class Constants {
     public final class Extras {
         public static final String LAT = "latitude";
         public static final String LNG = "longitude";
+        public static final String SPEED = "speed";
+        public static final String AIRBAG_STATUS = "airbag_status";
     }
 
     public final class Receivers {

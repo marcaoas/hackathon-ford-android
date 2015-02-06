@@ -70,6 +70,7 @@
 
         <service android:name=".applink.AppLinkService" />
 
-        <receiver android:name=".receiver.PanicoReceiver" />    </application>
+        <receiver android:name=".receiver.PanicoReceiver" />
+    </application>
 
 </manifest>
