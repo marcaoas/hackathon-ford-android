@@ -9,12 +9,15 @@
     <string name="lockscreen_reset_button">Reiniciar conexão</string>
     <string name="dashboard_title">Dashboard</string>
     <string name="title_activity_purchase">PurchaseActivity</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     
     <array name="planets_array">
-        <item>Inicio</item>
-        <item>Inicio</item>
-        <item>Inicio</item>
-        <item>Inicio</item>
+        <item>Início</item>
+        <item>Grupo</item>
+        <item>Upgrade</item>
+        <item>Configurações</item>
     </array>
     <string name="title_activity_group">GroupActivity</string>
     <string name="title_activity_configurations">ConfigurationsActivity</string>
