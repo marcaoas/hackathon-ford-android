@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg_lockscreen">
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/lockscreen_title"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
     <Button
         android:visibility="gone"
         android:id="@+id/reset_button"

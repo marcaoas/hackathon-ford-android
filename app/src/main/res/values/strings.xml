@@ -12,6 +12,11 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="sos_command">SOS</string>
+    <string name="socorro_command">Socorro</string>
+    <string name="emergencia_command">Emergência</string>
+    <string name="panico_command">Panico</string>
+    <string name="botao_panico_command">Botão de panico</string>
     
     <array name="planets_array">
         <item>Início</item>
@@ -19,6 +24,6 @@
         <item>Upgrade</item>
         <item>Configurações</item>
     </array>
-    <string name="title_activity_group">GroupActivity</string>
-    <string name="title_activity_configurations">ConfigurationsActivity</string>
+    <string name="title_activity_group">Grupo</string>
+    <string name="title_activity_configurations">Configurações</string>
 </resources>

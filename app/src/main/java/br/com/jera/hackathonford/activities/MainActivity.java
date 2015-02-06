@@ -1,10 +1,12 @@
 package br.com.jera.hackathonford.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,13 +26,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
+import br.com.jera.hackathonford.applink.AppLinkActivity;
 import br.com.jera.hackathonford.model.User;
+import br.com.jera.hackathonford.receiver.DrivingEventReceiver;
+import br.com.jera.hackathonford.receiver.PanicoReceiver;
+import br.com.jera.hackathonford.utils.Constants;
+import br.com.jera.hackathonford.utils.Logger;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class MainActivity extends ActionBarActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
+public class MainActivity extends AppLinkActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
 
     MapFragment mMapFragment;
     GoogleApiClient mGoogleApiClient;
@@ -48,7 +57,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.inject(this);
         mPlanetTitles = getResources().getStringArray(R.array.planets_array);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         // Set the adapter for the list view
@@ -58,6 +67,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 //        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
+        HackathonApplication app = HackathonApplication.getInstance();
+        if (app != null) {
+            app.startSyncProxyService();
+        }
+        HackathonApplication.setCurrentActivity(this);
         User test = User.getRandom();
         Toast.makeText(this, test.userName, Toast.LENGTH_SHORT).show();
 
@@ -75,6 +89,21 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
                 .build();
     }
 
+    final BroadcastReceiver receiver = new DrivingEventReceiver();
+    @Override
+    protected void onPause() {
+        unregisterReceiver(receiver);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        IntentFilter filter = new IntentFilter(
+                Constants.Receivers.COORDINATES_RECEIVED);
+        registerReceiver(receiver, filter);
+        super.onResume();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -90,7 +119,9 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.accident) {
+            Intent intent = new Intent(this, PanicoReceiver.class);
+            sendBroadcast(intent);
             return true;
         }
 
@@ -137,6 +168,7 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 
     @OnClick(R.id.upgrade)
     public void upgradeApp(){
+
         Intent intent = new Intent(this, PurchaseActivity.class);
         startActivity(intent);
     }
