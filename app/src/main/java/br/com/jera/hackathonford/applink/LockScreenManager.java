@@ -16,14 +16,14 @@ public class LockScreenManager {
         // only show the lockscreen if main activity is currently on top
         // else, wait until onResume() to show the lockscreen so it doesn't
         // pop-up while a user is using another app on the phone
-        if (HackathonApplication.getCurrentActivity() != null) {
-            if (((AppLinkActivity) HackathonApplication.getCurrentActivity()).isActivityonTop() == true) {
+//        if (HackathonApplication.getCurrentActivity() != null) {
+//            if (((AppLinkActivity) HackathonApplication.getCurrentActivity()).isActivityonTop() == true) {
                 Intent i = new Intent(HackathonApplication.getInstance(), LockScreenActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
                 HackathonApplication.getInstance().startActivity(i);
-            }
-        }
+//            }
+//        }
         lockScreenUp = true;
     }
 

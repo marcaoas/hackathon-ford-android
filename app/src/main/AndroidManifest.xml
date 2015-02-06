@@ -2,8 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.jera.hackathonford" >
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- Some older ICS based devices require BLUETOOTH_ADMIN permission to use listenUsingRfcommWithServiceRecord (used by SyncProxy object) -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Required to check if WiFi is enabled -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission android:name="br.com.jera.hackathonford.gcm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="br.com.jera.hackathonford.gcm.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
          The following two permissions are not required to use
@@ -18,13 +31,13 @@
         android:icon="@mipmap/heere_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".activities.SignupActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateVisible" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -54,6 +67,9 @@
             android:name=".activities.ConfigurationsActivity"
             android:label="@string/title_activity_configurations" >
         </activity>
-    </application>
+
+        <service android:name=".applink.AppLinkService" />
+
+        <receiver android:name=".receiver.PanicoReceiver" />    </application>
 
 </manifest>

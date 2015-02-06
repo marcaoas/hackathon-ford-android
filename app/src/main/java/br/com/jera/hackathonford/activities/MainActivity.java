@@ -1,6 +1,9 @@
 package br.com.jera.hackathonford.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -24,14 +27,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
+import br.com.jera.hackathonford.applink.AppLinkActivity;
 import br.com.jera.hackathonford.model.User;
+import br.com.jera.hackathonford.utils.Constants;
+import br.com.jera.hackathonford.utils.Logger;
+import butterknife.ButterKnife;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class MainActivity extends ActionBarActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
+public class MainActivity extends AppLinkActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
 
     MapFragment mMapFragment;
     GoogleApiClient mGoogleApiClient;
@@ -59,6 +67,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
 //        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
+        HackathonApplication app = HackathonApplication.getInstance();
+        if (app != null) {
+            app.startSyncProxyService();
+        }
+        HackathonApplication.setCurrentActivity(this);
         User test = User.getRandom();
         Toast.makeText(this, test.userName, Toast.LENGTH_SHORT).show();
 
@@ -74,6 +87,32 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+    }
+
+    final BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent i) {
+            if(i!=null){
+                String lat = i.getStringExtra(Constants.Extras.LAT);
+                String lng = i.getStringExtra(Constants.Extras.LNG);
+                String location = String.valueOf(lat) + "  --- " + String.valueOf(lng);
+                Toast.makeText(MainActivity.this, "Location = " + location, Toast.LENGTH_LONG).show();
+                Logger.d(location);
+            }
+        }
+    };
+    @Override
+    protected void onPause() {
+        unregisterReceiver(receiver);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        IntentFilter filter = new IntentFilter(
+                Constants.Receivers.COORDINATES_RECEIVED);
+        registerReceiver(receiver, filter);
+        super.onResume();
     }
 
     @Override
