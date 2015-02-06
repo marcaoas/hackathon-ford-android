@@ -19,10 +19,10 @@ public class BaseActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
         //TODO methods for all activities should be here
+
+
     }
 
 
-    public void startButtonClicked(View v){
-        Toast.makeText(this, "Ação de cadastro", Toast.LENGTH_SHORT).show();
-    }
+
 }

@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_login">
 
     <ImageView
         android:id="@+id/appIconImage"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="60dp"
+        android:src="@mipmap/ic_logo"
         />
     
-    
+    <TextView
+        android:id="@+id/fillNameTextView"
+        android:layout_below="@+id/appIconImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/nameEditText"
+        android:textColor="@color/whiteHint"
+        android:text="Preencha com seu nome"/>
     <EditText
         android:id="@+id/nameEditText"
-        android:layout_below="@+id/appIconImage"
+        android:layout_below="@+id/fillNameTextView"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/whiteHint"
+        android:textCursorDrawable= "@null"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:hint="@string/name"/>
 
     <Button
         android:id="@+id/startButton"
         android:layout_below="@+id/nameEditText"
-        android:layout_width="160dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:background="@color/accent"
         android:text="@string/startButton"
-        android:onClick="startButtonClicked"/>
+        android:textColor="@color/white"
+        />
 
 </RelativeLayout>

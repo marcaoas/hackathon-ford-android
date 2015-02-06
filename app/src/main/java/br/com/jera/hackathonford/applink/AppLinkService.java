@@ -21,6 +21,7 @@ import com.ford.syncV4.proxy.rpc.DeleteInteractionChoiceSetResponse;
 import com.ford.syncV4.proxy.rpc.DeleteSubMenuResponse;
 import com.ford.syncV4.proxy.rpc.DiagnosticMessageResponse;
 import com.ford.syncV4.proxy.rpc.EndAudioPassThruResponse;
+import com.ford.syncV4.proxy.rpc.GPSData;
 import com.ford.syncV4.proxy.rpc.GenericResponse;
 import com.ford.syncV4.proxy.rpc.GetDTCsResponse;
 import com.ford.syncV4.proxy.rpc.GetVehicleDataResponse;
@@ -284,27 +285,22 @@ public class AppLinkService extends Service implements IProxyListenerALM {
         switch (notification.getHmiLevel()) {
             case HMI_FULL:
                 Logger.i("HMI_FULL");
-                Vector<String> vector = new Vector<>();
-                vector.add("Socorro");
-                vector.add("SOS");
-                vector.add("Emergencia");
-                vector.add("panico");
-                vector.add("botão de panico");
                 try {
                     proxy.getvehicledata(true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, autoIncCorrId++);
                 } catch (Exception e){
                     e.printStackTrace();
                     Logger.d("Error while subscribe to vehicle data");
                 }
-                try {
-                    proxy.addCommand(60, "Socorro", vector, autoIncCorrId++);
-                } catch (SyncException e) {
-                    e.printStackTrace();
-                }
+                autoIncCorrId = CommandManager.addVoiceCommands(proxy, autoIncCorrId);
                 try {
                     proxy.show("Seja bem-vindo ao ", "HEERE", TextAlignment.CENTERED, autoIncCorrId++);
                 } catch (SyncException e) {
                     DebugTool.logError("Failed to send Show", e);
+                }
+                try {
+                    proxy.addSubMenu(15, "SOS", 0, autoIncCorrId++);
+                } catch (SyncException e) {
+                    e.printStackTrace();
                 }
                 break;
             case HMI_LIMITED:
@@ -324,12 +320,19 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnDriverDistraction(OnDriverDistraction notification) {
         Logger.d("Driver distraction: " + notification.getFunctionName());
+        try {
+            proxy.getvehicledata(true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, autoIncCorrId++);
+        } catch (Exception e){
+            e.printStackTrace();
+            Logger.d("Error while subscribe to vehicle data");
+        }
 
     }
 
     @Override
     public void onError(String info, Exception e) {
         // TODO Auto-generated method stub
+        e.printStackTrace();
     }
 
     @Override
@@ -483,6 +486,8 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnVehicleData(OnVehicleData notification) {
         // TODO Auto-generated method stub
+        GPSData location = notification.getGps();
+        Logger.d(location.toString());
     }
 
     @Override

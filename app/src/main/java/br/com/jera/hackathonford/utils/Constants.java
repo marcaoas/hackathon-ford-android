@@ -37,4 +37,7 @@ public class Constants {
         public static final String COORDINATES_RECEIVED = "COORDINATES_RECEIVED";
     }
 
+    public final class VoiceCommands {
+        public static final int SOS_COMMAND_ID = 60;
+    }
 }

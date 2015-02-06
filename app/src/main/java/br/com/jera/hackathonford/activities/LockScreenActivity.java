@@ -38,6 +38,7 @@ public class LockScreenActivity extends BaseActivity {
         ButterKnife.inject(this);
 
         LockScreenActivity.instance = this;
+        getSupportActionBar().hide();
     }
 
     final BroadcastReceiver receiver = new BroadcastReceiver() {

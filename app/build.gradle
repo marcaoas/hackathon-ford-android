@@ -30,4 +30,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     compile files('libs/AppLinkSDK-2.3.jar')
+    compile 'com.google.android.gms:play-services:6.5.87'
 }
