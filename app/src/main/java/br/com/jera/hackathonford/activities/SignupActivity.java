@@ -1,5 +1,6 @@
 package br.com.jera.hackathonford.activities;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class SignupActivity extends BaseActivity {
         ButterKnife.inject(this);
 //        Log.d("HACKATON", User.getCount() + "");
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         if(User.getCount() > 0){
