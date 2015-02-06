@@ -59,7 +59,7 @@ public class VehicleDataManager {
     private boolean isAirbagDeployed(AirbagStatus airbagStatus) {
         if(airbagStatus==null){
             return false;
-        } else if(isDeployed(airbagStatus.getDriverAirbagDeployed())               ||
+        } else if(isDeployed(airbagStatus.getDriverAirbagDeployed())        ||
             isDeployed(airbagStatus.getDriverCurtainAirbagDeployed())       ||
             isDeployed(airbagStatus.getDriverKneeAirbagDeployed())          ||
             isDeployed(airbagStatus.getDriverSideAirbagDeployed())          ||
