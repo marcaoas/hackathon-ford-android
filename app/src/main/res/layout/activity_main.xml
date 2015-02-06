@@ -23,12 +23,23 @@
                 android:layout_weight="6"
                 android:name="com.google.android.gms.maps.MapFragment" />
 
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6">
-
-            </ListView>
+                android:layout_weight="6"
+                android:paddingTop="8dp"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Histórico de localizações"
+                    android:textSize="18sp"/>
+                <ListView
+                    android:id="@+id/drivingEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -12,7 +12,7 @@
         android:layout_margin="20dp"
         android:layout_alignParentTop="true"/>
     <TextView
-        android:id="@+id/completeName"
+        android:id="@+id/locationName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rua Teldo Kasper, 109"
@@ -20,10 +20,10 @@
         android:textSize="18sp"
         android:layout_toRightOf="@+id/circleInitialName"/>
     <TextView
-        android:id="@+id/administrator"
+        android:id="@+id/occurrence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="há 10 minutos"
-        android:layout_below="@+id/completeName"
-        android:layout_alignLeft="@+id/completeName"/>
+        android:layout_below="@+id/locationName"
+        android:layout_alignLeft="@+id/locationName"/>
 </RelativeLayout>
