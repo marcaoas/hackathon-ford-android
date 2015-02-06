@@ -1,5 +1,6 @@
 package br.com.jera.hackathonford.activities;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.model.User;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class MainActivity extends ActionBarActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
@@ -131,5 +133,11 @@ public class MainActivity extends ActionBarActivity implements OnMapReadyCallbac
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
+    }
+
+    @OnClick(R.id.upgrade)
+    public void upgradeApp(){
+        Intent intent = new Intent(this, PurchaseActivity.class);
+        startActivity(intent);
     }
 }

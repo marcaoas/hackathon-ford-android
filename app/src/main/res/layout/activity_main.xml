@@ -30,11 +30,27 @@
 
             </ListView>
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:background="@color/primary_dark"></View>
+                android:orientation="horizontal"
+                android:background="@color/primary_dark">
+                <ListView
+                    android:id="@+id/users"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"/>
+                <Button
+                    android:id="@+id/upgrade"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="UPGRADE"
+                    android:gravity="center"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/accent"/>
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
     <ListView android:id="@+id/left_drawer"
