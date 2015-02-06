@@ -30,6 +30,7 @@ import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.applink.AppLinkActivity;
 import br.com.jera.hackathonford.model.User;
+import br.com.jera.hackathonford.receiver.DrivingEventReceiver;
 import br.com.jera.hackathonford.receiver.PanicoReceiver;
 import br.com.jera.hackathonford.utils.Constants;
 import br.com.jera.hackathonford.utils.Logger;
@@ -88,18 +89,7 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
                 .build();
     }
 
-    final BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent i) {
-            if(i!=null){
-                String lat = i.getStringExtra(Constants.Extras.LAT);
-                String lng = i.getStringExtra(Constants.Extras.LNG);
-                String location = String.valueOf(lat) + "  --- " + String.valueOf(lng);
-                Toast.makeText(MainActivity.this, "Location = " + location, Toast.LENGTH_LONG).show();
-                Logger.d(location);
-            }
-        }
-    };
+    final BroadcastReceiver receiver = new DrivingEventReceiver();
     @Override
     protected void onPause() {
         unregisterReceiver(receiver);

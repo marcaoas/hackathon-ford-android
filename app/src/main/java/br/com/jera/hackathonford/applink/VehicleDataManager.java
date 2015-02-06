@@ -7,7 +7,9 @@ import com.ford.syncV4.proxy.rpc.AirbagStatus;
 import com.ford.syncV4.proxy.rpc.GPSData;
 import com.ford.syncV4.proxy.rpc.GetVehicleDataResponse;
 import com.ford.syncV4.proxy.rpc.OnVehicleData;
+import com.ford.syncV4.proxy.rpc.enums.VehicleDataEventStatus;
 
+import br.com.jera.hackathonford.model.AirbagSituation;
 import br.com.jera.hackathonford.utils.Constants;
 
 /**
@@ -20,6 +22,7 @@ public class VehicleDataManager {
     private Double lat;
     private Double lng;
     private Double speed;
+    private String airbag;
 
     public VehicleDataManager(Context context, OnVehicleData vehicleData){
         this.context = context;
@@ -38,12 +41,39 @@ public class VehicleDataManager {
                 lat = 0d;
                 lng = 0d;
             }
+            if(isAirbagDeployed(airbagStatus)){
+                airbag = AirbagSituation.DEPLOYED.name();
+            } else {
+                airbag = AirbagSituation.NOT_DEPLOYED.name();
+            }
 
             Intent intent = new Intent(Constants.Receivers.COORDINATES_RECEIVED);
             intent.putExtra(Constants.Extras.LAT, String.valueOf(lat));
             intent.putExtra(Constants.Extras.LNG, String.valueOf(lng));
+            intent.putExtra(Constants.Extras.SPEED, String.valueOf(lng));
+            intent.putExtra(Constants.Extras.AIRBAG_STATUS, airbag);
             context.sendBroadcast(intent);
         }
+    }
+
+    private boolean isAirbagDeployed(AirbagStatus airbagStatus) {
+        if(airbagStatus==null){
+            return false;
+        } else if(isDeployed(airbagStatus.getDriverAirbagDeployed())               ||
+            isDeployed(airbagStatus.getDriverCurtainAirbagDeployed())       ||
+            isDeployed(airbagStatus.getDriverKneeAirbagDeployed())          ||
+            isDeployed(airbagStatus.getDriverSideAirbagDeployed())          ||
+            isDeployed(airbagStatus.getPassengerAirbagDeployed())           ||
+            isDeployed(airbagStatus.getPassengerCurtainAirbagDeployed())    ||
+            isDeployed(airbagStatus.getPassengerKneeAirbagDeployed())       ||
+            isDeployed(airbagStatus.getPassengerSideAirbagDeployed())){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDeployed(VehicleDataEventStatus status){
+        return status == VehicleDataEventStatus.YES;
     }
 
     public static void handleVehicleData(Context context, OnVehicleData vehicleData){
