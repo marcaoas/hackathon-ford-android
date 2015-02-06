@@ -31,6 +31,9 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/whiteHint"
+        android:textCursorDrawable= "@null"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
         android:hint="@string/name"/>
 
     <Button
@@ -40,7 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:background="@color/accent"
         android:text="@string/startButton"
+        android:textColor="@color/white"
         />
 
 </RelativeLayout>
