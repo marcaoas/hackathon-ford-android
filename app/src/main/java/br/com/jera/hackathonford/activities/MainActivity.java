@@ -10,8 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -26,6 +29,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.R;
 import br.com.jera.hackathonford.applink.AppLinkActivity;
@@ -39,7 +44,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class MainActivity extends AppLinkActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener {
+public class MainActivity extends AppLinkActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener, ListView.OnItemClickListener{
 
     MapFragment mMapFragment;
     GoogleApiClient mGoogleApiClient;
@@ -63,8 +68,8 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, mPlanetTitles));
-//        // Set the list's click listener
-//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        // Set the list's click listener
+        mDrawerList.setOnItemClickListener(this);
 
 
         HackathonApplication app = HackathonApplication.getInstance();
@@ -171,5 +176,28 @@ public class MainActivity extends AppLinkActivity implements OnMapReadyCallback,
 
         Intent intent = new Intent(this, PurchaseActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        TextView test = (TextView) findViewById(v.getId());
+        Log.d("AAAA", position + "");
+        if(position == 0){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        if(position == 1){
+            Intent intent = new Intent(this, GroupActivity.class);
+            startActivity(intent);
+        }
+        if(position == 2){
+
+            Intent intent = new Intent(this, PurchaseActivity.class);
+            startActivity(intent);
+        }
+        if(position == 3){
+            Intent intent = new Intent(this, ConfigurationsActivity.class);
+            startActivity(intent);
+        }
     }
 }
