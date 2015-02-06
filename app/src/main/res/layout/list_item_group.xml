@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+    <TextView
+        android:id="@+id/circleInitialName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="N"
+        android:textSize="28sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/circle_shape"
+        android:layout_margin="24dp"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:id="@+id/completeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ney Ricardo"
+        android:paddingTop="28dp"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/circleInitialName"/>
+    <TextView
+        android:id="@+id/administrator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrador"
+        android:layout_below="@+id/completeName"
+        android:layout_alignLeft="@+id/completeName"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_delete"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        />
+
+
+</RelativeLayout>
