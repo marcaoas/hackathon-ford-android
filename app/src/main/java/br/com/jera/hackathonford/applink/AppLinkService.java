@@ -64,6 +64,10 @@ import com.ford.syncV4.proxy.rpc.enums.SyncDisconnectedReason;
 import com.ford.syncV4.proxy.rpc.enums.TextAlignment;
 import com.ford.syncV4.util.DebugTool;
 
+import java.util.Vector;
+
+import br.com.jera.hackathonford.HackathonApplication;
+import br.com.jera.hackathonford.utils.Constants;
 import br.com.jera.hackathonford.utils.Logger;
 
 /**
@@ -130,7 +134,9 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Remove any previous stop service runnables that could be from a recent ACL Disconnect
+        Logger.d("Service created");
         mHandler.removeCallbacks(mStopServiceRunnable);
+
 
         // Start the proxy when the service starts
         if (intent != null) {
@@ -153,6 +159,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     public void onDestroy() {
         disposeSyncProxy();
         LockScreenManager.clearLockScreen();
+        Logger.d("Service destroyed");
         instance = null;
         super.onDestroy();
     }
@@ -177,7 +184,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     public void startProxy() {
         if (proxy == null) {
             try {
-                proxy = new SyncProxyALM(this, "Hello AppLink", true, "438316430");
+                proxy = new SyncProxyALM(this, Constants.Ford.APP_NAME, true, Constants.Ford.APP_ID);
             } catch (SyncException e) {
                 e.printStackTrace();
                 // error creating proxy, returned proxy = null
@@ -277,23 +284,27 @@ public class AppLinkService extends Service implements IProxyListenerALM {
         switch (notification.getHmiLevel()) {
             case HMI_FULL:
                 Logger.i("HMI_FULL");
-                if (notification.getFirstRun()) {
-                    // setup app on SYNC
-                    // send welcome message if applicable
-                    try {
-                        proxy.show("this is the first", "show command", TextAlignment.CENTERED, autoIncCorrId++);
-                    } catch (SyncException e) {
-                        DebugTool.logError("Failed to send Show", e);
-                    }
-                    // send addcommands
-                    // subscribe to buttons
-                    subButtons();
-                } else {
-                    try {
-                        proxy.show("SyncProxy is", "Alive", TextAlignment.CENTERED, autoIncCorrId++);
-                    } catch (SyncException e) {
-                        DebugTool.logError("Failed to send Show", e);
-                    }
+                Vector<String> vector = new Vector<>();
+                vector.add("Socorro");
+                vector.add("SOS");
+                vector.add("Emergencia");
+                vector.add("panico");
+                vector.add("botão de panico");
+                try {
+                    proxy.getvehicledata(true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, autoIncCorrId++);
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Logger.d("Error while subscribe to vehicle data");
+                }
+                try {
+                    proxy.addCommand(60, "Socorro", vector, autoIncCorrId++);
+                } catch (SyncException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    proxy.show("Seja bem-vindo ao ", "HEERE", TextAlignment.CENTERED, autoIncCorrId++);
+                } catch (SyncException e) {
+                    DebugTool.logError("Failed to send Show", e);
                 }
                 break;
             case HMI_LIMITED:
@@ -312,6 +323,8 @@ public class AppLinkService extends Service implements IProxyListenerALM {
 
     @Override
     public void onOnDriverDistraction(OnDriverDistraction notification) {
+        Logger.d("Driver distraction: " + notification.getFunctionName());
+
     }
 
     @Override
@@ -327,6 +340,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnCommand(OnCommand notification) {
         // TODO Auto-generated method stub
+        CommandManager.handleCommand(this, notification);
     }
 
     @Override
@@ -435,6 +449,7 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onSubscribeVehicleDataResponse(SubscribeVehicleDataResponse response) {
         // TODO Auto-generated method stub
+        Logger.d("Subscribed to vehicle data");
 
     }
 
@@ -448,6 +463,8 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onGetVehicleDataResponse(GetVehicleDataResponse response) {
         // TODO Auto-generated method stub
+        VehicleDataManager.handleVehicleData(this, response);
+        Logger.i("onGetVehicleDataResponse");
 
     }
 
@@ -466,7 +483,6 @@ public class AppLinkService extends Service implements IProxyListenerALM {
     @Override
     public void onOnVehicleData(OnVehicleData notification) {
         // TODO Auto-generated method stub
-
     }
 
     @Override

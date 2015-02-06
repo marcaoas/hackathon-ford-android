@@ -1,11 +1,13 @@
 package br.com.jera.hackathonford.applink;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.jera.hackathonford.HackathonApplication;
 import br.com.jera.hackathonford.activities.BaseActivity;
+import br.com.jera.hackathonford.receiver.PanicoReceiver;
 
 /**
  * Created by marco on 05/02/15.

@@ -2,6 +2,9 @@ package br.com.jera.hackathonford.utils;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
+
+import br.com.jera.hackathonford.HackathonApplication;
 
 /**
  * Created by marco on 05/02/15.
